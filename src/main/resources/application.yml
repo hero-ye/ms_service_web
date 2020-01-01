@@ -1,0 +1,17 @@
+server:
+  port: 8011
+  servlet:
+    context-path: /ms/service/web
+  tomcat:
+    uri-encoding: UTF-8
+
+
+spring:
+  application:
+    name: ms-service-web #指定服务名称
+#  mvc:
+#    view:
+#      prefix: /
+#      suffix: .jsp
+  thymeleaf:
+    cache: false
