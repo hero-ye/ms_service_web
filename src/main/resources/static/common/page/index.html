@@ -28,10 +28,23 @@
 <div id="headPage"></div>
 <div class="dbody">
     <h1>功能菜单</h1>
-    <button class="fourWordsButton" onclick="common.page('permission', 'permission')">许可维护</button>
-    <button class="fourWordsButton" onclick="common.page('permission', 'assignPermission')">分配角色</button>
-    <button class="fourWordsButton" onclick="common.page('sheettype', 'sheettype')">工单类型</button>
-    <button class="fourWordsButton" onclick="$('#dlg-sendsms').dialog('open')">验证码</button>
+    <div>
+        <ul id="ul-menu">
+            <li>
+                <button class="fourWordsButton" onclick="common.page('permission', 'permission')">许可维护</button>
+            </li>
+            <li>
+                <button class="fourWordsButton" onclick="common.page('permission', 'assignPermission')">分配角色</button>
+            </li>
+            <li>
+                <button class="fourWordsButton" onclick="common.page('sheettype', 'sheettype')">工单类型</button>
+            </li>
+            <li>
+                <button class="fourWordsButton" onclick="$('#dlg-sendsms').dialog('open')">验证码</button>
+            </li>
+        </ul>
+    </div>
+
 </div>
 <!--dialog：验证码 Begin-->
 <div class="easyui-dialog" id="dlg-sendsms" title="验证码" style="width: 400px; height:200px;padding: 10px"
@@ -50,7 +63,8 @@
 
 <div id="dlg-buttons-templet">
     <a href="javascript:void(0)" class="easyui-linkbutton l-btn-main" onclick="common.sendsms()">确定</a>
-    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#dlg-sendsms').dialog('close'); $('#mobile').val('')">取消</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton"
+       onclick="$('#dlg-sendsms').dialog('close'); $('#mobile').val('')">取消</a>
 </div>
 <!--dialog：验证码 End-->
 
