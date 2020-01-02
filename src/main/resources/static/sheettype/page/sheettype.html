@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=8;IE=9;IE=10;IE=11;IE=EDGE" />
+    <meta http-equiv="X-UA-Compatible" content="IE=8;IE=9;IE=10;IE=11;IE=EDGE"/>
     <meta charset="UTF-8">
     <title>工单类型</title>
     <link rel="shortcut icon" type="image/x-icon" href="../../common/img/hero.png">
@@ -29,19 +29,25 @@
     <div class="dtitle">
         工单类型
     </div>
-    <button class="twoWordsButton" onclick="common.page('common', 'index')">首页</button>
+    <button class="twoWordsButton"
+            onclick="window.location.href='/ms/service/web/common/page/index.html'">首页
+    </button>
     <!--省份下拉框-->
     <div id="dproName" style="width: 40%;height: 40px;margin: 20px 0px 0px 40px;line-height: 38px">
         <span>省份名称：</span>
-        <select id="proSel" name="proSel" style="width: 186px;height: 31px;border-radius: 3px;border: 1px #ccc solid;outline: none">
+        <select id="proSel" name="proSel"
+                style="width: 186px;height: 31px;border-radius: 3px;border: 1px #ccc solid;outline: none">
             <option selected value="0">请选择</option>
         </select>
     </div>
     <!--省份编码-->
     <div id="dproId" style="width: 500px;margin: 15px 0 0 40px;">
-        省份编码：<input type="text" id="proId" style="width: 174px;height: 27px;border-radius: 3px;border: 1px #ccc solid;padding: 0px 5px;margin-left: 5px;outline: none">
+        省份编码：<input type="text" id="proId"
+                    style="width: 174px;height: 27px;border-radius: 3px;border: 1px #ccc solid;padding: 0px 5px;margin-left: 5px;outline: none">
         <button class="twoWordsButton" onclick="Sheettype.create()" style="margin-left: 28px;">新建</button>
-        <button class="twoWordsButton" onclick="Sheettype.reset('#sheetType','#sheetSel')" style="margin-left: 28px;">重置</button>
+        <button class="twoWordsButton" onclick="Sheettype.reset('#sheetType','#sheetSel')" style="margin-left: 28px;">
+            重置
+        </button>
     </div>
     <!--工单类型下拉框-->
     <div class="zTreeDemoBackground left">
@@ -49,18 +55,24 @@
             <li class="title">
                 工单类型：
                 <input type="hidden" name="sheetType" id="sheetType"/>
-                <input type="text" id="sheetSel" readonly value="" style="width: 155px;height: 24px;border-radius: 3px;border: 1px #ccc solid;padding-left: 5px;padding-right: 25px;outline: none" onclick="Sheettype.showMenu();"/>
+                <input type="text" id="sheetSel" readonly value=""
+                       style="width: 155px;height: 24px;border-radius: 3px;border: 1px #ccc solid;padding-left: 5px;padding-right: 25px;outline: none"
+                       onclick="Sheettype.showMenu();"/>
                 <a href="javascript:void(0)" id="showa" onclick="Sheettype.showMenu();"
                    style="display: inline-block;width: 24px;height: 26px;position: relative;right: 31px;">
                     <b style="display: inline-block;width: 8px;height: 8px;border-right: 1px #ccc solid;border-bottom: 1px #ccc solid;transform: rotate(45deg);position: relative;top: -2px;right: -7px;"></b>
                 </a>
                 <button class="twoWordsButton" onclick="getVal()" id="menuBtn" style="margin-left: -2px;">获取</button>
-                <button class="twoWordsButton" onclick="Sheettype.clear('#sheetType','#sheetSel')" id="clear" style="margin-left: 28px;">清除</button>
+                <button class="twoWordsButton" onclick="Sheettype.clear('#sheetType','#sheetSel')" id="clear"
+                        style="margin-left: 28px;">清除
+                </button>
             </li>
         </ul>
     </div>
-    <div id="menuContent" class="menuContent" style="border: 1px #ccc solid;max-height: 227px;width: 185px;position: absolute;left: 199.125px;top: 409.5px;">
-        <ul id="sheetTree" class="ztree menuul" style="margin-top: 0;overflow: scroll;width:175px;max-height: 200px;"></ul>
+    <div id="menuContent" class="menuContent"
+         style="border: 1px #ccc solid;max-height: 227px;width: 185px;position: absolute;left: 199.125px;top: 409.5px;">
+        <ul id="sheetTree" class="ztree menuul"
+            style="margin-top: 0;overflow: scroll;width:175px;max-height: 200px;"></ul>
     </div>
 
     <!--异步-->
@@ -72,7 +84,8 @@
     </div>-->
 
     <!--省份菜单-固定版-->
-    <div class="menuContent" style="float: right;width: 25%;height: 619px;position: relative;bottom: 260px;border: 1px #ccc solid;">
+    <div class="menuContent"
+         style="float: right;width: 25%;height: 619px;position: relative;bottom: 260px;border: 1px #ccc solid;">
             <span>
                 <ul class="menuul" style="list-style: none;max-height: 619px;overflow: scroll;margin-top: 0;">
                     <li>[10] 内蒙古</li>
