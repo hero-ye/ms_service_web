@@ -1,4 +1,9 @@
 var common = {
+
+    /**
+     * 获取所有菜单的接口
+     */
+    getMenuUrl: "http://127.0.0.1:7011/ms/service/menu/findAll",
     /**
      * 发送短信的接口
      */
@@ -8,9 +13,8 @@ var common = {
      * 页面跳转
      * @param pageName
      */
-    page: function (bussiness, pageName) {
-        // window.location.href = common.getPath() + "/common/" + pageName;
-        window.location.href = common.getPath() + "/ms/service/web/" + bussiness + "/page/" + pageName + ".html";
+    jumpPage: function (url) {
+        window.location.href = url;
     },
 
     /**
@@ -21,7 +25,6 @@ var common = {
      */
     getPath: function (url) {
         var path = (url || self.location.href).replace("//", "@@").split("/");
-        // return path[0].replace("@@", "//") + "/" + path[1];
         return path[0].replace("@@", "//");
     },
 
@@ -123,6 +126,34 @@ var common = {
             }
         });
         return o;
+    },
+
+    /**
+     * 获取所有菜单
+     */
+    getMenuList: function (obj) {
+        $.ajax({
+            type: 'get',
+            url: common.getMenuUrl,
+            dataType: "json",
+            async: false,
+            success: function (e) {
+                if (e.success) {
+                    var html = "";
+                    var data = e.data;
+                    $.each(data, function (key, value) {
+                        html += "<li>";
+                        if (value.url) {
+                            html += "<button class=\"fourWordsButton\" onclick=\"common.jumpPage('" + value.url + "')\">" + value.menuName + "</button>";
+                        } else {
+                            html += "<button class=\"fourWordsButton\" onclick=\"$('#dlg-sendsms').dialog('open')\">" + value.menuName + "</button>";
+                        }
+                        html += "</li>";
+                    });
+                    obj.html(html);
+                }
+            }
+        });
     },
 
     /**
