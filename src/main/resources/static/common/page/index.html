@@ -64,7 +64,7 @@
 <div id="dlg-buttons-templet">
     <a href="javascript:void(0)" class="easyui-linkbutton l-btn-main" onclick="common.sendsms()">确定</a>
     <a href="javascript:void(0)" class="easyui-linkbutton"
-       onclick="$('#dlg-sendsms').dialog('close'); $('#mobile').val('')">取消</a>
+       onclick="$('#dlg-sendsms').dialog('close'); common.resetForm($('#formsendsms'))">取消</a>
 </div>
 <!--dialog：验证码 End-->
 
