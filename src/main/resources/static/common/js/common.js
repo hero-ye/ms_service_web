@@ -1,5 +1,9 @@
 var common = {
-    smsUrl: "http://127.0.0.1:7012/ms/sms/sendsms/",
+    /**
+     * 发送短信的接口
+     */
+    smsUrl: "http://127.0.0.1:7012/ms/sms/sendsms/sendValidCode",
+
     /**
      * 页面跳转
      * @param pageName
@@ -46,7 +50,7 @@ var common = {
         spop({
             template: e,
             style: 'success',
-            position  : 'top-right',
+            position: 'top-right',
             autoclose: 3000
             // onOpen: function() {
             //     document.body.style.background = "#fff";
@@ -57,11 +61,11 @@ var common = {
     /**
      * 显示失败提示窗口
      */
-    showError:function (e) {
+    showError: function (e) {
         spop({
             template: e,
             style: 'error',
-            position  : 'top-right',
+            position: 'top-right',
             autoclose: 3000
             // onOpen: function() {
             //     document.body.style.background = "#fff";
@@ -72,11 +76,11 @@ var common = {
     /**
      * 显示基本信息提示窗口
      */
-    showInfo:function (e) {
+    showInfo: function (e) {
         spop({
             template: e,
             style: 'default',
-            position  : 'top-right',
+            position: 'top-right',
             autoclose: 3000
             // onOpen: function() {
             //     document.body.style.background = "#fff";
@@ -85,9 +89,46 @@ var common = {
     },
 
     /**
+     * 清空表单
+     */
+    resetForm: function (obj) {
+        $(":input", obj)
+            .not(":button", ":reset", ":hidden", ":submit")
+            .val("")
+            .removeAttr("checked")
+            .removeAttr("selected");
+    },
+
+    /**
+     * 将表单数据序列化并转为json格式
+     */
+    formToJson: function (form) {
+        var o = {};
+        $(form.serializeArray()).each(function () {
+            if (o[this.name]) {
+                if ($.isArray(o[this.name])) {
+                    o[this.name].push(this.value);
+                } else {
+                    o[this.name] = [o[this.name], this.value];
+                }
+            } else {
+                o[this.name] = this.value;
+            }
+        });
+        //对只有单name的checkbox和radio明确标著是否有选中
+        form.find(":checkbox,:radio").each(function () {
+            var el = $("[name='" + this.name + "']", form);
+            if (el && el.length == 1) {
+                o[this.name] = el.is(":checked") ? true : false;
+            }
+        });
+        return o;
+    },
+
+    /**
      * 检查手机号码是否合法
      */
-    checkMobile: function(e){
+    checkMobile: function (e) {
         if (!(/^1[3456789]\d{9}$/.test(e))) {
             return false;
         } else {
@@ -99,12 +140,12 @@ var common = {
      * 发送验证码
      */
     sendsms: function () {
-        var mobile = $("#mobile").val();
-        var valid = common.checkMobile(mobile);
-        if (valid) {
+        var form = common.formToJson($("#formsendsms"));
+        if (form && common.checkMobile(form.mobile)) {
             $.ajax({
                 type: 'post',
-                url: common.smsUrl + mobile,
+                url: common.smsUrl,
+                data: form,
                 dataType: "json",
                 async: false,
                 success: function (e) {
@@ -118,7 +159,7 @@ var common = {
             });
         } else {
             console.log("发送失败");
-            common.showError("请输入合法手机号码！");
+            common.showError("请输入合法手机号码");
         }
     }
 };
