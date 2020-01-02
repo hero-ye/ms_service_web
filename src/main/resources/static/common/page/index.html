@@ -21,6 +21,7 @@
             $("#metaPage").load("meta.html");
             $("#headPage").load("head.html");
             $("#footPage").load("foot.html");
+            common.getMenuList($("#ul-menu"));
         })
     </script>
 </head>
@@ -30,7 +31,7 @@
     <h1>功能菜单</h1>
     <div>
         <ul id="ul-menu">
-            <li>
+            <!--<li>
                 <button class="fourWordsButton" onclick="common.page('permission', 'permission')">许可维护</button>
             </li>
             <li>
@@ -41,7 +42,7 @@
             </li>
             <li>
                 <button class="fourWordsButton" onclick="$('#dlg-sendsms').dialog('open')">验证码</button>
-            </li>
+            </li>-->
         </ul>
     </div>
 
