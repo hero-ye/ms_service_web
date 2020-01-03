@@ -4,34 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=8;IE=9;IE=10;IE=11;IE=EDGE"/>
     <title>首页</title>
-    <link rel="shortcut icon" type="image/x-icon" href="../img/hero.png">
-    <link rel="stylesheet" type="text/css" href="../css/common.css">
-    <link rel="stylesheet" type="text/css" href="../utils/spop/css/spop.css">
+    <link rel="shortcut icon" type="image/x-icon" href="../../common/img/hero-old.png">
+    <link rel="stylesheet" type="text/css" href="../../common/css/common.css">
+    <link rel="stylesheet" type="text/css" href="../../common/utils/spop/css/spop.css">
     <link rel="stylesheet" type="text/css" href="http://www.jeasyui.net/Public/js/easyui/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="http://www.jeasyui.net/Public/js/easyui/themes/icon.css">
-    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../../common/js/jquery.js"></script>
+    <script type="text/javascript" src="../../common/js/common.js"></script>
+    <script type="text/javascript" src="../../common/utils/spop/js/spop.js"></script>
     <script type="text/javascript" src="http://www.jeasyui.net/Public/js/easyui/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="../js/common.js"></script>
-    <script type="text/javascript" src="../utils/spop/js/spop.js"></script>
     <script>
         /**
          * 引入公共的头部页面和足部页面
          */
         $(function () {
-            $("#metaPage").load("meta.html");
-            $("#headPage").load("head.html");
-            $("#footPage").load("foot.html");
-            common.getMenuList($("#ul-menu"));
+            $("#metaPage").load("../../common/page/meta.html");
+            $("#headPage").load("../../common/page/head.html");
+            $("#footPage").load("../../common/page/foot.html");
+            // common.getMenuList($("#ul-menu"));
         })
     </script>
 </head>
 <body>
 <div id="headPage"></div>
 <div class="dbody">
-    <h1>功能菜单</h1>
+    <h1>欢迎使用</h1>
     <div>
         <ul id="ul-menu">
-            <!--<li>
+           <!-- <li>
                 <button class="fourWordsButton" onclick="common.page('permission', 'permission')">许可维护</button>
             </li>
             <li>
@@ -39,10 +39,10 @@
             </li>
             <li>
                 <button class="fourWordsButton" onclick="common.page('sheettype', 'sheettype')">工单类型</button>
-            </li>
+            </li>-->
             <li>
                 <button class="fourWordsButton" onclick="$('#dlg-sendsms').dialog('open')">验证码</button>
-            </li>-->
+            </li>
         </ul>
     </div>
 
@@ -63,7 +63,7 @@
 </div>
 
 <div id="dlg-buttons-templet">
-    <a href="javascript:void(0)" class="easyui-linkbutton l-btn-main" onclick="common.sendsms()">确定</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton l-btn-main" onclick="common.sendsms($('#formsendsms'))">确定</a>
     <a href="javascript:void(0)" class="easyui-linkbutton"
        onclick="$('#dlg-sendsms').dialog('close'); common.resetForm($('#formsendsms'))">取消</a>
 </div>

@@ -1,28 +1,38 @@
-body {background-color: #E9EBEF}
-button{
-    cursor: pointer;
-    border: 0.5px #ccc solid;
-    border-radius: 5px;
-    background-color: white;
-    text-align: center;
-    outline: none;
+body {
+    background-color: #E9EBEF
 }
-button:hover{
-    background-color: #29ABE2;
-    border: 0.5px #3295D9 solid;
-    color: white;
-}
+
 #dhead {
     background-color: white;
     width: 100%;
-    height: 150px;
+    height: 70px;
     margin: 0 auto;
     box-sizing: border-box;
 }
 
-#logo{width: 121px;height: 121px;position: relative;top: 14px;left: 25px;}
-#companyName{position: relative;top: -75px;left: 200px; width: 600px;height: 50px;font-size: 45px;font-family: '楷体';font-weight: bolder;}
-#loginAndRegist{width: 200px;height: 50px;line-height: 49px;float: right;position: relative;top: -171px;}
+#logo {
+    width: 280px;
+    height: 45px;
+    position: relative;
+    top: 12px;
+    left: 25px;
+    background-size: 100% auto;
+    background: url(http://127.0.0.1:8011/ms/service/web/common/img/hero.png) no-repeat 0 0;
+    cursor: pointer;
+}
+
+#loginAndRegist {
+    width: 200px;
+    height: 70px;
+    line-height: 68px;
+    float: right;
+    position: relative;
+    top: -115px;
+}
+
+a{
+    color: #29ABE2;
+}
 
 .dbody {
     background-color: white;
@@ -33,6 +43,7 @@ button:hover{
     margin-bottom: 10px;
     padding: 10px;
 }
+
 .dfoot {
     background-color: white;
     width: 100%;
@@ -44,60 +55,133 @@ button:hover{
     font-family: "Arial";
     font-size: smaller;
 }
-#dfootInfo{text-align: center;width: 50%;margin: 0 auto;position: relative;top: 26px;}
 
-.dfoot a{
+#dfootInfo {
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+    position: relative;
+    top: 26px;
+}
+
+.dfoot a {
     color: #999999;
 }
 
-/*滚动条宽高*/
-.menuul::-webkit-scrollbar{
-    width: 8px;
-    height: 8px;
-}
-/*滚动条里面的滑块*/
-.menuul::-webkit-scrollbar-thumb{
-    border-radius: 5px;/*滑块圆角*/
-    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
-    background: rgba(0,0,0,0.2);
-}
-/*滚动条里面的轨道*/
-.menuul::-webkit-scrollbar-track{
+button {
+    cursor: pointer;
+    border: 0.5px #ccc solid;
     border-radius: 5px;
-    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
-    /*background: rgba(0,0,0,0.2);*/
+    background-color: white;
+    text-align: center;
+    outline: none;
+}
+
+button:hover {
+    background-color: #29ABE2;
+    border: 0.5px #3295D9 solid;
+    color: white;
 }
 
 /*button中有两个字符*/
-.twoWordsButton{
+.twoWordsButton {
     width: 50px;
     height: 28px;
     line-height: 26px;
 }
 
 /*button中有四个字符*/
-.fourWordsButton{
+.fourWordsButton {
     width: 110px;
     height: 35px;
     line-height: 26px;
 }
 
-#ul-menu, #ul-menu li {
-    list-style:none; /* 将默认的列表符号去掉 */
-    padding:0; /* 将默认的内边距去掉 */
-    margin:0; /* 将默认的外边距去掉 */
+.navMenuSpan {
+    cursor: pointer;
+    text-align: center;
+    outline: none;
 }
-#ul-menu li {
-    float:left; /* 往左浮动 */
+
+.navMenuSpan:hover {
+    color: #29ABE2;
+}
+
+#nav-div-menu{
+    width: 500px;
+    height: 70px;
+    position: relative;
+    top: -45px;
+    left: 305px;
+}
+
+/*button中有两个字符*/
+.twoWordsSpan {
+    width: 50px;
+    height: 28px;
+    line-height: 26px;
+}
+
+/*button中有四个字符*/
+.fourWordsSpan {
+    width: 110px;
+    height: 35px;
+    line-height: 26px;
+}
+
+/*滚动条宽高*/
+.menuul::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+/*滚动条里面的滑块*/
+.menuul::-webkit-scrollbar-thumb {
+    border-radius: 5px; /*滑块圆角*/
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+/*滚动条里面的轨道*/
+.menuul::-webkit-scrollbar-track {
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    /*background: rgba(0,0,0,0.2);*/
+}
+
+#ul-menu, #ul-menu li, #nav-ul-menu, #nav-ul-menu li {
+    list-style: none; /* 将默认的列表符号去掉 */
+    padding: 0; /* 将默认的内边距去掉 */
+    margin: 0; /* 将默认的外边距去掉 */
+}
+
+#ul-menu li{
+    float: left; /* 往左浮动 */
     margin: 5px 10px 5px 0;
 }
-#ul-menu li:last-child {
+
+#ul-menu li:last-child, #nav-ul-menu li:last-child {
     margin: 5px 0 5px 0;
 }
 
-.hide{
+#nav-ul-menu{
+    position: relative;
+    top: 17px;
+}
+
+#nav-ul-menu li{
+    float: left; /* 往左浮动 */
+    margin: 5px 30px 5px 0;
+}
+
+/*隐藏*/
+.hide {
     display: none;
 }
 
+/*激活状态*/
+.active{
+    color: #29ABE2;
+}
 
 

@@ -1,13 +1,19 @@
 var common = {
 
     /**
-     * 获取所有菜单的接口
+     * 根据类型获取树
      */
-    getMenuUrl: "http://127.0.0.1:7013/ms/system/menu/findAll",
+    treeListUrl: "http://127.0.0.1:7011/ms/service/tree/getTreeCodeInfo",
+
     /**
      * 发送短信的接口
      */
     smsUrl: "http://127.0.0.1:7012/ms/sms/sendsms/sendValidCode",
+
+    /**
+     * 获取所有菜单的接口
+     */
+    menuUrl: "http://127.0.0.1:7013/ms/system/menu/findAll",
 
     /**
      * 页面跳转
@@ -35,11 +41,14 @@ var common = {
         var permissionList;
         $.ajax({
             type: 'get',
-            url: common.getPath() + "/permission/loadData",
+            url: common.treeListUrl,
+            data: "",
             async: false,
-            success: function (data) {
-                if (data.success) {
+            success: function (e) {
+                if (e.success) {
                     permissionList = data.data;
+                } else {
+                    common.showError(e.msg);
                 }
             }
         });
@@ -129,12 +138,20 @@ var common = {
     },
 
     /**
+     * 点击标签激活
+     */
+    active: function (el) {
+        $(el).addClass('active');
+        $(el).siblings().removeClass('active');
+    },
+
+    /**
      * 获取所有菜单
      */
     getMenuList: function (obj) {
         $.ajax({
             type: 'get',
-            url: common.getMenuUrl,
+            url: common.menuUrl,
             dataType: "json",
             async: false,
             success: function (e) {
@@ -144,9 +161,40 @@ var common = {
                     $.each(data, function (key, value) {
                         html += "<li>";
                         if (value.url) {
-                            html += "<button class=\"fourWordsButton\" onclick=\"common.jumpPage('" + value.url + "')\">" + value.menuName + "</button>";
+                            html += "<button class=\"fourWordsButton indexbutton\" onclick=\"common.jumpPage('" + value.url + "')\">" + value.menuName + "</button>";
                         } else {
-                            html += "<button class=\"fourWordsButton\" onclick=\"$('#dlg-sendsms').dialog('open')\">" + value.menuName + "</button>";
+                            html += "<button class=\"fourWordsButton indexbutton\" onclick=\"$('#dlg-sendsms').dialog('open')\">" + value.menuName + "</button>";
+                        }
+                        html += "</li>";
+                    });
+                    obj.html(html);
+                }
+            }
+        });
+    },
+
+    /**
+     * 获取导航栏所有菜单
+     */
+    getNavMenu: function (obj) {
+        $.ajax({
+            type: 'get',
+            url: common.menuUrl,
+            dataType: "json",
+            async: false,
+            success: function (e) {
+                if (e.success) {
+                    var html = "";
+                    var data = e.data;
+                    $.each(data, function (key, value) {
+                        var id = value.menuKey + "_" + value.menuId;
+                        html += "<li>";
+                        if (value.parentId == "ROOT") {
+                            html += "<span class=\"navMenuSpan fourWordsSpan active\" id=\"" + id + "\" onclick=\"common.jumpPage('" + value.url + "')\">" + value.menuName + "</span>";
+                        } else if (value.url) {
+                            html += "<span class=\"navMenuSpan fourWordsSpan\" id=\"" + id + "\" onclick=\"common.jumpPage('" + value.url + "')\">" + value.menuName + "</span>";
+                        } else {
+                            html += "<span class=\"navMenuSpan fourWordsSpan\" id=\"" + id + "\" onclick=\"$('#dlg-sendsms').dialog('open')\">" + value.menuName + "</span>";
                         }
                         html += "</li>";
                     });
@@ -170,8 +218,8 @@ var common = {
     /**
      * 发送验证码
      */
-    sendsms: function () {
-        var form = common.formToJson($("#formsendsms"));
+    sendsms: function (obj) {
+        var form = common.formToJson(obj);
         if (form && common.checkMobile(form.mobile)) {
             $.ajax({
                 type: 'post',
