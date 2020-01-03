@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<script type="text/javascript" src="/ms/service/web/common/js/jquery.js"></script>
 <script type="text/javascript">
     $(function () {
         common.getNavMenu($("#nav-ul-menu"));
+        $('.navli').on('click',function(){
+            $(this).addClass('active');
+            $(this).siblings().removeClass('active');
+        })
     })
 </script>
 <div id="dhead">
