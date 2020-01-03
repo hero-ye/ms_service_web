@@ -3,7 +3,7 @@ var common = {
     /**
      * 获取所有菜单的接口
      */
-    getMenuUrl: "http://127.0.0.1:7011/ms/service/menu/findAll",
+    getMenuUrl: "http://127.0.0.1:7013/ms/system/menu/findAll",
     /**
      * 发送短信的接口
      */
