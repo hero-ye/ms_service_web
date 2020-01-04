@@ -138,11 +138,10 @@ var common = {
     },
 
     /**
-     * 点击标签激活
+     * 点击标签激活，激活的是上级
      */
     active: function (el) {
-        $(el).addClass('active');
-        $(el).siblings().removeClass('active');
+        $(el).parent().addClass('active').siblings().removeClass('active');
     },
 
     /**
@@ -188,13 +187,15 @@ var common = {
                     var data = e.data;
                     $.each(data, function (key, value) {
                         var id = value.menuKey + "_" + value.menuId;
-                        html += "<li>";
                         if (value.parentId == "ROOT") {
-                            html += "<span class=\"navMenuSpan fourWordsSpan active\" id=\"" + id + "\" onclick=\"common.jumpPage('" + value.url + "')\">" + value.menuName + "</span>";
+                            html += "<li class='active'>";
+                            html += "<span class=\"navMenuSpan fourWordsSpan\" id=\"" + id + "\" onclick=\"common.jumpPage('" + value.url + "');common.active(this)\">" + value.menuName + "</span>";
                         } else if (value.url) {
-                            html += "<span class=\"navMenuSpan fourWordsSpan\" id=\"" + id + "\" onclick=\"common.jumpPage('" + value.url + "')\">" + value.menuName + "</span>";
+                            html += "<li>";
+                            html += "<span class=\"navMenuSpan fourWordsSpan\" id=\"" + id + "\" onclick=\"common.jumpPage('" + value.url + "');common.active(this)\">" + value.menuName + "</span>";
                         } else {
-                            html += "<span class=\"navMenuSpan fourWordsSpan\" id=\"" + id + "\" onclick=\"$('#dlg-sendsms').dialog('open')\">" + value.menuName + "</span>";
+                            html += "<li>";
+                            html += "<span class=\"navMenuSpan fourWordsSpan\" id=\"" + id + "\" onclick=\"$('#dlg-sendsms').dialog('open');common.active(this)\">" + value.menuName + "</span>";
                         }
                         html += "</li>";
                     });
