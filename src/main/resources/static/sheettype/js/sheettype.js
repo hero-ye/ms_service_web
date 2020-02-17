@@ -82,7 +82,7 @@ var Sheettype = {
         var proId = $("#proId").val();
         var zNodes = Sheettype.getTreeList(proId, "CODE_SHEET_TYPE_ID");
         try {
-            if (!zNodes.length <= 0) {
+            if (zNodes && !zNodes.length <= 0) {
                 $.fn.zTree.init($("#sheetTree"), setting, zNodes);
                 common.showSuccess("创建成功！");
                 Sheettype.showMenu();
