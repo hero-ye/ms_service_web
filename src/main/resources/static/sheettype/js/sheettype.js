@@ -15,8 +15,8 @@ var Sheettype = {
             v = "";
         var sheetType = "";
         for (var i = 0, l = nodes.length; i < l; i++) {
-            v += nodes[i].name + ",";
-            sheetType += nodes[i].id + ",";
+            v += nodes[i].codeName + ",";
+            sheetType += nodes[i].codeValue + ",";
         }
         if (v.length > 0) v = v.substring(0, v.length - 1);
         if (sheetType.length > 0) sheetType = sheetType.substring(0, sheetType.length - 1);
@@ -97,7 +97,6 @@ var Sheettype = {
     //鼠标放上去
     overFn: function (obj) {
         $(obj).css("background", "#DBEAF9");
-
     },
 
     //鼠标移开
@@ -119,12 +118,12 @@ var Sheettype = {
         //2根据输入框的内容去数据库中模糊查询---List<Product>
         var content = "";
         if (codeName) {
-            $.post(common.getPath() + "/sheetType/findByWord", {"codeName": codeName},
+            $.get("http://localhost:8090/ms/service/tree/findByWord", {"codeName": codeName},
                 function (e) {
                     //3、将返回的商品的名称 现在showDiv中
                     if (e.data && e.data.length > 0) {
                         for (var i = 0; i < e.data.length; i++) {
-                            content += "<div class='codeNameItem' onclick='Sheettype.clickFn(this)' onmouseover='Sheettype.overFn(this)' onmouseout='Sheettype.outFn(this)'>" + e.data[i].name + "</div>";
+                            content += "<div class='codeNameItem' onclick='Sheettype.clickFn(this)' onmouseover='Sheettype.overFn(this)' onmouseout='Sheettype.outFn(this)'>" + e.data[i].treeNamePath + "</div>";
                         }
                     } else {
                         content += "<div class='codeNameItem'>暂无匹配标签！</div>";
@@ -146,7 +145,13 @@ $(document).bind("click", function () {
     $('#showDiv').css('display', 'none');
 });
 
-var setting = {
+let setting = {
+    data: {
+        key: {
+            id: "codeId",
+            name: "codeName"
+        }
+    },
     check: {
         enable: true,
         chkboxType: {"Y": "s", "N": "s"}
@@ -154,11 +159,6 @@ var setting = {
     view: {
         dblClickExpand: true,
         showIcon: false
-    },
-    data: {
-        simpleData: {
-            enable: true
-        }
     },
     callback: {
         // beforeClick: Sheettype.beforeClick,//取消此方法，则单击节点文字时不会勾选复选框
@@ -212,6 +212,7 @@ $(function () {
             Sheettype.create();
         }
     });
+
 });
 
 
