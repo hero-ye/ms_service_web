@@ -29,7 +29,7 @@
     </dependencies>
 
     <!-- 从私服下载依赖 -->
-    <repositories>
+    <!--<repositories>
         <repository>
             <id>nexus</id>
             <name>Nexus Repository</name>
@@ -54,6 +54,6 @@
                 <enabled>true</enabled>
             </releases>
         </pluginRepository>
-    </pluginRepositories>
+    </pluginRepositories>-->
 
 </project>
