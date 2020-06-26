@@ -235,6 +235,9 @@ var common = {
                         $('#dlg-sendsms').dialog('close');
                         common.showSuccess(e.msg);
                     }
+                },
+                error: function () {
+                    common.showError("网络错误，请联系管理员！");
                 }
             });
         } else {
